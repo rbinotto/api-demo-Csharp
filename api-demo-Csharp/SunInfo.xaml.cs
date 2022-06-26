@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DemoLibrary;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,14 @@ namespace api_demo_Csharp
         public SunInfo()
         {
             InitializeComponent();
+        }
+
+        private async void loadSunInfo_Click(object sender, RoutedEventArgs e)
+        {
+            var sunInfo = await SunProcessor.LoadSunInformation();
+
+            sunriseText.Text = $"Sunrise is at { sunInfo.Sunrise.ToShortTimeString() }";
+            sunsetText.Text = $"Sunset is at { sunInfo.Sunset.ToShortTimeString() }";
         }
     }
 }
